@@ -4,8 +4,9 @@ from task.models.message import Message
 
 
 class AIClient(ABC):
-
-    def __init__(self, endpoint: str, model_name: str, api_key: str, system_prompt: str):
+    def __init__(
+        self, endpoint: str, model_name: str, api_key: str, system_prompt: str
+    ):
         if not api_key or api_key.strip() == "":
             raise ValueError("API key cannot be null or empty")
 
@@ -27,3 +28,6 @@ class AIClient(ABC):
         Send asynchronous request to AI API and return AI response.
         """
         ...
+
+    @abstractmethod
+    async def close_recources(self) -> None: ...
