@@ -1,6 +1,7 @@
 import asyncio
 
 from task.clients.anthropic.client import AnthropicAIClient
+from task.clients.anthropic.custom_client import CustomAnthropicAIClient
 from task.clients.base import AIClient
 from task.clients.openai.client import OpenAIClient
 from task.clients.openai.custom_client import CustomOpenAIClient
@@ -8,6 +9,7 @@ from task.constants import (
     ANTHROPIC_API_KEY,
     ANTHROPIC_ENDPOINT,
     ANTHROPIC_MODEL,
+    ANTHROPIC_VERSION,
     DEFAULT_SYSTEM_PROMPT,
     OPENAI_API_KEY,
     OPENAI_ENDPOINT,
@@ -41,17 +43,30 @@ async def start(stream: bool, client: AIClient) -> None:
 
 
 openAiClient = OpenAIClient(
-    OPENAI_ENDPOINT, OPENAI_MODEL, DEFAULT_SYSTEM_PROMPT, OPENAI_API_KEY
+    endpoint=OPENAI_ENDPOINT,
+    model_name=OPENAI_MODEL,
+    system_prompt=DEFAULT_SYSTEM_PROMPT,
+    api_key=OPENAI_API_KEY,
 )
 
 customOpenAIClient = CustomOpenAIClient(
-    OPENAI_ENDPOINT, OPENAI_MODEL, DEFAULT_SYSTEM_PROMPT, OPENAI_API_KEY
+    endpoint=OPENAI_ENDPOINT,
+    model_name=OPENAI_MODEL,
+    system_prompt=DEFAULT_SYSTEM_PROMPT,
+    api_key=OPENAI_API_KEY,
 )
 
 anthropicAiClient = AnthropicAIClient(
-    ANTHROPIC_ENDPOINT, ANTHROPIC_MODEL, DEFAULT_SYSTEM_PROMPT, ANTHROPIC_API_KEY
+    endpoint=ANTHROPIC_ENDPOINT,
+    model_name=ANTHROPIC_MODEL,
+    system_prompt=DEFAULT_SYSTEM_PROMPT,
+    api_key=ANTHROPIC_API_KEY,
 )
-# customAnthropicAIClient = CustomAnthropicAIClient(
-#    ANTHROPIC_ENDPOINT, "", DEFAULT_SYSTEM_PROMPT, ANTHROPIC_API_KEY
-# )
-asyncio.run(start(stream=True, client=anthropicAiClient))
+customAnthropicAIClient = CustomAnthropicAIClient(
+    endpoint=ANTHROPIC_ENDPOINT,
+    model_name=ANTHROPIC_MODEL,
+    system_prompt=DEFAULT_SYSTEM_PROMPT,
+    api_key=ANTHROPIC_API_KEY,
+    anthropic_version=ANTHROPIC_VERSION,
+)
+asyncio.run(start(stream=True, client=customAnthropicAIClient))

@@ -8,4 +8,5 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY", "")
 ANTHROPIC_ENDPOINT = "https://api.anthropic.com/v1/messages"
-ANTHROPIC_MODEL = "claude-sonnet-4-5-20250929"
+ANTHROPIC_MODEL = "claude-sonnet-4-5"
+ANTHROPIC_VERSION = "2023-06-01"

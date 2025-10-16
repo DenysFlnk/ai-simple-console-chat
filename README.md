@@ -9,12 +9,12 @@ Implement a command-line chat application that communicates with the AI API. You
 ## 🎓 Learning Goals
 
 By completing this task, you will learn:
+
 - Work with endpoint to communicate with LLM
 - Work with REST requests to LLM
 - Handle REST responses from LLM
 - Handle stream responses from LLM
-- Break down illusions of *magic* and *complication* of working with AI API
-
+- Break down illusions of _magic_ and _complication_ of working with AI API
 
 ## 📋 Requirements
 
@@ -25,32 +25,34 @@ By completing this task, you will learn:
 - Basic understanding of HTTP requests and async/await
 
 ## 🔧 Setup
+
 1. **Setup venv: (also can be configured via IDE)**
    ```bash
    python -m venv .venv
    ```
 2. **Install dependencies:**
+
    ```bash
    pip install -r requirements.txt
    ```
 
 3. **Set your API key:**
-    - Set OPENAI_API_KEY as env variable, https://platform.openai.com/settings/organization/api-keys
-    - Set ANTHROPIC_API_KEY as env variable, https://console.anthropic.com/settings/keys
+   - Set OPENAI_API_KEY as env variable, https://platform.openai.com/settings/organization/api-keys
+   - Set ANTHROPIC_API_KEY as env variable, https://console.anthropic.com/settings/keys
 
 4. **Project structure:**
    ```
    task/
    ├── models/
    │   ├── conversation.py       ✅ Complete
-   │   ├── message.py            ✅ Complete  
+   │   ├── message.py            ✅ Complete
    │   └── role.py               ✅ Complete
-   ├── clients/              
+   ├── clients/
    │   ├── base.py               ✅ Complete
-   │   ├── anthropic/    
+   │   ├── anthropic/
    │   │   ├── client.py         🚧 TODO: OPTIONAL Implement methods
    │   │   └── custom_client.py  🚧 TODO: OPTIONAL Implement methods
-   │   └── openai/    
+   │   └── openai/
    │       ├── base.py/          🚧 TODO: Implement constructor
    │       ├── client.py         🚧 TODO: Implement methods
    │       └── custom_client.py  🚧 TODO: Implement methods
@@ -61,6 +63,7 @@ By completing this task, you will learn:
 ## 📝 Your Tasks
 
 ### 1. Complete [app.py](task/app.py)
+
 Implement the `start()` function:
 
 - Handle user input and conversation flow
@@ -68,10 +71,12 @@ Implement the `start()` function:
 - Implement clients and test with them with non-streaming and streaming modes
 
 ### 2. Complete [OpenAI Client](task/clients/openai/client.py) and test it
-### 3. Complete [OpenAI Custom Client](task/clients/openai/custom_client.py) and test it
-### 4. Optional: Complete [Anthropic Client](task/clients/anthropic/client.py) and test it
-### 5. Optional: Complete [Anthropic Custom Client](task/clients/anthropic/custom_client.py) and test it
 
+### 3. Complete [OpenAI Custom Client](task/clients/openai/custom_client.py) and test it
+
+### 4. Optional: Complete [Anthropic Client](task/clients/anthropic/client.py) and test it
+
+### 5. Optional: Complete [Anthropic Custom Client](task/clients/anthropic/custom_client.py) and test it
 
 ## 🔍 API Reference
 
@@ -81,6 +86,7 @@ Implement the `start()` function:
 <summary>Examples of  API requests</summary>
 
 **Only required fields in request body:**
+
 ```json
 {
   "messages": [
@@ -97,6 +103,7 @@ Implement the `start()` function:
 ```
 
 Full request:
+
 ```
 POST https://api.openai.com/v1/chat/completions
 Authorization: Bearer {YOUR_API_KEY}
@@ -118,7 +125,7 @@ Content-Type: application/json
 }
 ```
 
-</details> 
+</details>
 
 <details> 
 <summary>Example of API regular REST responses</summary>
@@ -161,8 +168,7 @@ Content-Type: application/json
 }
 ```
 
-</details> 
-
+</details>
 
 <details> 
 <summary>Examples of  API responses from streaming</summary>
@@ -254,10 +260,12 @@ data: {
 ```
 
 When streaming is finished it returns `[DONE]`
+
 ```
 data: [DONE]
 ```
-</details> 
+
+</details>
 
 ### Anthropic:
 
@@ -280,6 +288,7 @@ data: [DONE]
 ```
 
 Full request:
+
 ```
 POST https://api.anthropic.com/v1/messages
 x-api-key: {YOUR_API_KEY}
@@ -295,7 +304,8 @@ Content-Type: application/json
     ]
 }
 ```
-</details> 
+
+</details>
 
 <details> 
 <summary>Example of API regular REST responses</summary>
@@ -324,7 +334,7 @@ Content-Type: application/json
 }
 ```
 
-</details> 
+</details>
 
 <details> 
 <summary>Examples of API responses from streaming</summary>
@@ -413,18 +423,20 @@ data: {
 ```
 
 When streaming is finished it returns json with type `message_stop`
+
 ```
 data: {
   "type": "message_stop"
 }
 ```
-</details> 
+
+</details>
 
 ## ✅ Main Criteria for Application Functionality:
 
 1. Streaming in Console:
+
    > Ensure that the application streams output continuously in the console, reflecting real-time interactions or updates.
 
 2. Conversation History Support:
    > The application should support a history of conversations, allowing LLM to see previous interactions.
-   
